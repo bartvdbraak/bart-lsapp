@@ -131,13 +131,13 @@
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/pages" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/storage/app/public/images" />
       <recent name="$PROJECT_DIR$/storage/app/public/cover_images" />
       <recent name="$PROJECT_DIR$/resources/views/layouts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/pages" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -174,7 +174,8 @@
       <workItem from="1568037312230" duration="1895000" />
       <workItem from="1568060297835" duration="9684000" />
       <workItem from="1568070206748" duration="610000" />
-      <workItem from="1568106281924" duration="27414000" />
+      <workItem from="1568106281924" duration="27927000" />
+      <workItem from="1568207272218" duration="21706000" />
     </task>
     <servers />
   </component>

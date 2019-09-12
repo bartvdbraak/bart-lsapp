@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddExcerptToPosts extends Migration
+class AddCategoriesToPosts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddExcerptToPosts extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function ($table) {
-            $table->string('excerpt');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('category');
         });
     }
 
@@ -25,8 +25,8 @@ class AddExcerptToPosts extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function ($table) {
-            $table->dropColumn('excerpt');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('category');
         });
     }
 }

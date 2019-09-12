@@ -25,8 +25,8 @@
         <div class="container mt-3">
             @include('inc.messages')
             @yield('content')
+            @include('inc.footer')
         </div>
-        @include('inc.footer')
         @yield('extra-js')
     </div>
 

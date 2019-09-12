@@ -25,7 +25,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at','desc')->paginate(10);
+        $posts = Post::orderBy('created_at','desc')->paginate(5);
 
         return view('posts.index')->with('posts', $posts);
     }
@@ -53,6 +53,7 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
+
         ]);
 
         // Handle File upload
@@ -77,6 +78,7 @@ class PostsController extends Controller
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+
         $post->user_id = auth()->user()->id;
         $post->cover_image = $filenameToStore;
         $post->save();
