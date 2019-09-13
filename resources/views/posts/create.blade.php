@@ -9,6 +9,14 @@
             {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
         </div>
         <div class="form-group">
+            {{Form::label('category_id', 'Category')}}
+            <select name="category_id" class="form-control">
+                @foreach($categories as $key => $value)
+                    <option value="{{$value->id}}">{{ $value->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             {{Form::label('body', 'Body')}}
             {{Form::textarea('body', '', ['class' => 'form-control', 'id' => 'editor', 'height' => '300px'])}}
         </div>

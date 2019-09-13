@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 Use Illuminate\Support\Facades\Storage;
 use App\Post;
+use App\Category;
 
 class PostsController extends Controller
 {
@@ -37,7 +38,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create', ['categories' => $categories]);
     }
 
     /**
@@ -52,8 +54,8 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            'cover_image' => 'image|nullable|max:1999'
-
+            'cover_image' => 'image|nullable|max:1999',
+            'category_id' => 'nullable'
         ]);
 
         // Handle File upload
@@ -78,9 +80,9 @@ class PostsController extends Controller
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
-
         $post->user_id = auth()->user()->id;
         $post->cover_image = $filenameToStore;
+        $post->category_id = $request->input('category_id');
         $post->save();
         return redirect('/posts')->with('success', 'Your post was successfully created.');
     }
@@ -94,6 +96,9 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        if($post == null) {
+            abort(404);
+        }
         return view('posts.show')->with('post', $post);
     }
 
@@ -105,6 +110,7 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all();
 
         $post = Post::find($id);
         // Check for correct user
@@ -113,7 +119,7 @@ class PostsController extends Controller
             return redirect('/posts')->with('error', 'Unauthorized: You cannot edit other users posts.');
         }
 
-        return view('posts.edit')->with('post', $post);
+        return view('posts.edit', ['post' => $post, 'categories' => $categories]);
     }
 
     /**
@@ -129,7 +135,8 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
-            'cover_image' => 'image|nullable|max:1999'
+            'cover_image' => 'image|nullable|max:1999',
+            'category_id' => 'nullable'
         ]);
 
         // Handle File upload
@@ -151,6 +158,7 @@ class PostsController extends Controller
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        $post->category_id = $request->input('category_id');
         if($request->hasFile('cover_image')) {
             Storage::delete('public/cover_images/' . $post->cover_image);
             $post->cover_image = $filenameToStore;

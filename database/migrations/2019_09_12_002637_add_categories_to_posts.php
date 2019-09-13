@@ -14,7 +14,7 @@ class AddCategoriesToPosts extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('category');
+            $table->integer('category_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddCategoriesToPosts extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('category');
+            $table->dropColumn('category_id');
         });
     }
 }

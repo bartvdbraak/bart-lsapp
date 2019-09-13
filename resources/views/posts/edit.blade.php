@@ -8,6 +8,20 @@
         {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title'])}}
     </div>
     <div class="form-group">
+        {{Form::label('category_id', 'Category')}}
+        <select name="category_id" class="form-control">
+            @if($post->category_id == null)
+                <option value="" disabled selected>Select your option</option>
+            @else
+                <option value="{{$post->category_id}}" disabled selected>{{$post->category['name']}}</option>
+            @endif
+
+            @foreach($categories as $key => $value)
+                <option value="{{$value->id}}">{{ $value->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         {{Form::label('body', 'Body')}}
         {{Form::textarea('body', $post->body, ['class' => 'form-control', 'id' => 'editor', 'placeholder' => 'Body text', 'height' => '300px'])}}
     </div>

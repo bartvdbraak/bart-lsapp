@@ -27,14 +27,16 @@
                         <tr>
                             <th>Thumbnail</th>
                             <th>Title</th>
+                            <th>Category</th>
                             <th>Date Created</th>
                             <th></th>
                             <th></th>
                         </tr>
-                        @foreach($posts as $post)
+                        @foreach($posts->reverse() as $post)
                             <tr>
                                 <td ><img style="height: 36px; border-radius: 10%;" src="/storage/cover_images/{{$post->cover_image}}" alt=""></td>
                                 <td class="align-middle">{{$post->title}}</td>
+                                <td class="align-middle"><strong style="color: {{ $post->category['color'] }};" class="d-inline-block mb-2">{{ $post->category['name'] }}</strong></td>
                                 <td class="align-middle">{{$post->created_at}}</td>
                                 <td><a href="/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a> </td>
                                 <td>

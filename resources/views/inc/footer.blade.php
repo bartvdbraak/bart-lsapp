@@ -16,11 +16,15 @@
         <div class="col-6 col-md">
             <h5>Users</h5>
             <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Register</a></li>
-                <li><a class="text-muted" href="#">Login</a></li>
-                <li><a class="text-muted" href="#">Reset Password</a></li>
-                <li><a class="text-muted" href="#">Dashboard</a></li>
-                <li><a class="text-muted" href="#">Logout</a></li>
+                @if(Auth::guest())
+                <li><a class="text-muted" href="/register">Register</a></li>
+                <li><a class="text-muted" href="/login">Login</a></li>
+                <li><a class="text-muted" href="/password/reset">Reset Password</a></li>
+                @else
+                <li><a class="text-muted" href="/dashboard">Dashboard</a></li>
+                <li><a class="text-muted" href="/posts/create">New post</a></li>
+                <li><a class="text-muted" href="/logout">Logout</a></li>
+                @endif
             </ul>
         </div>
     </div>
